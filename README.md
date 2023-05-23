@@ -1,23 +1,14 @@
-# next-template
+# Brogrammer Blog
 
-A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
+A place to share wisdom with the boys about gym, coding, and life. [https://brogrammer-blog.vercel.app/](https://brogrammer-blog.vercel.app/)
 
-## Usage
+## A Learning Experience
 
-```bash
-npx create-next-app -e https://github.com/shadcn/next-template
-```
+I created this simple blog for 2 reasons:
 
-## Features
+1. Firstly, to learn the fundamentals of NextJS13 including its new routing system with the `App/` folder and React server components.
 
-- Radix UI Primitives
-- Tailwind CSS
-- Fonts with `next/font`
-- Icons from [Lucide](https://lucide.dev)
-- Dark mode with `next-themes`
-- Automatic import sorting with `@ianvs/prettier-plugin-sort-imports`
-- Tailwind CSS class sorting, merging and linting.
+2. The second, and more important reason, was to motivate the documentation of future projects by sharing findings with friends.
 
-## License
-
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
+I hope to get the most basic MVP out by June 2023.
+Stay Tuned!
