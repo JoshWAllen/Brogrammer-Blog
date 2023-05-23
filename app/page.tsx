@@ -11,18 +11,15 @@ export default function IndexPage() {
           Brogrammer Blog
         </h1>
         <p className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-          Accessible and customizable components that you can copy and paste
-          into your apps. Free. Open Source. And Next.js 13 Ready.
+          A place to share wisdom with the boys about gym, coding, and life.
         </p>
       </div>
       <div className="flex gap-4">
         <Link
-          href={siteConfig.links.docs}
-          target="_blank"
-          rel="noreferrer"
+          href={siteConfig.links.blog}
           className={buttonVariants({ size: "lg" })}
         >
-          Documentation
+          Enlightenment
         </Link>
         <Link
           target="_blank"
@@ -30,7 +27,7 @@ export default function IndexPage() {
           href={siteConfig.links.github}
           className={buttonVariants({ variant: "outline", size: "lg" })}
         >
-          GitHub
+          Github
         </Link>
       </div>
     </section>
