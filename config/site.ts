@@ -10,6 +10,7 @@ export const siteConfig = {
       href: "/",
     },
     { title: "Blog", href: "/blog" },
+    { title: "Login", href: "/login" },
   ],
   links: {
     github: "https://github.com/JoshWAllen/Brogrammer-Blog",
