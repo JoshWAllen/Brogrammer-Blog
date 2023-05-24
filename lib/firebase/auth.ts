@@ -24,4 +24,4 @@ const logout = () => {
   signOut(auth)
 }
 
-export { auth, signInWithGoogle, logout }
+export { signInWithGoogle, logout }
