@@ -1,19 +1,19 @@
 "use client"
 
 import React from "react"
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 
-import { useAuthContext } from "@/lib/firebase/auth-context"
+import { buttonVariants } from "@/components/ui/button"
 
 function Page() {
-  const user = useAuthContext()
-  const router = useRouter()
-
-  React.useEffect(() => {
-    if (user == null) router.push("/")
-  }, [user])
-
-  return <h1>Only logged in users can view this page</h1>
+  return (
+    <div>
+      <h1>Only logged in users can view this page</h1>
+      <Link href="/admin/modifyDB" className={buttonVariants({ size: "lg" })}>
+        Interact with the Database
+      </Link>
+    </div>
+  )
 }
 
 export default Page
