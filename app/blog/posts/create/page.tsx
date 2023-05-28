@@ -1,10 +1,11 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
-import { addDataWithID } from "@/lib/firebase/addData"
+import { addData, addDataWithID } from "@/lib/firebase/addData"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -17,6 +18,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/components/ui/use-toast"
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -28,6 +31,9 @@ const formSchema = z.object({
 })
 
 export default function ProfileForm() {
+  const router = useRouter()
+  const { toast } = useToast()
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,7 +48,15 @@ export default function ProfileForm() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values)
-    addDataWithID("users", "Josh Allen", values)
+    addData("posts", values)
+    //redirect to another
+    //should validate that addData goes through
+    toast({
+      title: "Post Created!",
+      description: "Check the posts page to view and edit",
+      action: <ToastAction altText="Undo">Close</ToastAction>,
+    })
+    router.push("/blog/posts")
   }
   return (
     <>
@@ -84,7 +98,7 @@ export default function ProfileForm() {
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Create Post</Button>
         </form>
       </Form>
     </>
