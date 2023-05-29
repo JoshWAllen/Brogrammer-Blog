@@ -6,7 +6,6 @@ import {
   getFirestore,
   setDoc,
 } from "firebase/firestore"
-import { string } from "mathjs"
 
 import firebase_app from "@/config/firebase"
 
