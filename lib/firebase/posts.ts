@@ -5,6 +5,7 @@ import {
   deleteDoc,
   doc,
   getDoc,
+  getDocs,
   getFirestore,
 } from "firebase/firestore"
 
@@ -34,6 +35,16 @@ export async function getPost(postId: string) {
     console.log("no such document")
   }
   return data
+}
+
+export async function getAllPosts() {
+  const collectionRef = collection(db, "posts")
+  const querySnapshot = await getDocs(collectionRef)
+  const documents: DocumentData[] = []
+  querySnapshot.forEach((doc) => {
+    documents.push({ id: doc.id, ...doc.data() })
+  })
+  return documents
 }
 
 export async function deletePost(postId: string) {
