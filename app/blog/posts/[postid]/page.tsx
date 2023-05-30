@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { DocumentData } from "firebase/firestore"
 
 import { useAuthContext } from "@/lib/firebase/auth-context"
-import { getDocument } from "@/lib/firebase/getData"
+import { getPost } from "@/lib/firebase/posts"
 
 function Page({ params }: { params: { postid: string } }) {
   const user = useAuthContext()
@@ -15,9 +15,8 @@ function Page({ params }: { params: { postid: string } }) {
   useEffect(() => {
     if (!user) router.push("/")
     const fetchPost = async () => {
-      const post = await getDocument("posts", params.postid)
-      console.log("post: ", post)
-      setPost(post?.data())
+      const post = await getPost(params.postid)
+      setPost(post)
     }
     if (params.postid) {
       fetchPost()

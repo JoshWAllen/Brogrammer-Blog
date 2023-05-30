@@ -5,7 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
-import { addData, addDataWithID } from "@/lib/firebase/addData"
+import { useAuthContext } from "@/lib/firebase/auth-context"
+import { createPost } from "@/lib/firebase/posts"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -31,6 +32,7 @@ const formSchema = z.object({
 })
 
 export default function ProfileForm() {
+  const user = useAuthContext()
   const router = useRouter()
   const { toast } = useToast()
 
@@ -47,16 +49,19 @@ export default function ProfileForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
-    addData("posts", values)
-    //redirect to another
-    //should validate that addData goes through
-    toast({
-      title: "Post Created!",
-      description: "Check the posts page to view and edit",
-      action: <ToastAction altText="Undo">Close</ToastAction>,
-    })
-    router.push("/blog/posts")
+    if (!user) {
+      router.push("/")
+    } else {
+      createPost({ ...values, authorId: user?.uid }) //maybe should append current user in createPost function
+      //redirect to another
+      //should validate that createPost goes through
+      toast({
+        title: "Post Created!",
+        description: "Check the posts page to view and edit",
+        action: <ToastAction altText="Undo">Close</ToastAction>,
+      })
+      router.push("/blog/posts")
+    }
   }
   return (
     <>
