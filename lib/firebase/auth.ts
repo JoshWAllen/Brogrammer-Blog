@@ -20,8 +20,14 @@ const signInWithGoogle = async () => {
   }
 }
 
+const getCurrentUser = () => {
+  const auth = getAuth()
+  const user = auth.currentUser
+  return user
+}
+
 const logout = () => {
   signOut(auth)
 }
 
-export { signInWithGoogle, logout }
+export { signInWithGoogle, getCurrentUser, logout }
