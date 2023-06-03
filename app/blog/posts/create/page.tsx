@@ -46,13 +46,13 @@ export default function ProfileForm() {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     if (!user) {
       router.push("/")
     } else {
-      createPost({ ...values, authorId: user?.uid }) //maybe should append current user in createPost function
+      const docId = await createPost({ ...values, authorId: user?.uid }) //maybe should append current user in createPost function
       //redirect to another
       //should validate that createPost goes through
       toast({
@@ -60,7 +60,7 @@ export default function ProfileForm() {
         description: "Check the posts page to view and edit",
         action: <ToastAction altText="Undo">Close</ToastAction>,
       })
-      router.push("/blog/posts")
+      router.push(`/blog/posts/${docId}`)
     }
   }
   return (
