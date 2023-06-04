@@ -6,7 +6,7 @@ import LoginButton from "@/components/login-button"
 
 function Page() {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex gap-4 justify-center items-center">
       <LoginButton />
       <Button onClick={() => logout()}>logout</Button>
     </div>

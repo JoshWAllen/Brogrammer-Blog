@@ -96,6 +96,7 @@ export default function ProfileForm() {
                   <Textarea
                     placeholder="Tutorial hell is a real place, but most beginner programmers don't even know they're in it!"
                     className=""
+                    rows={30}
                     {...field}
                   />
                 </FormControl>

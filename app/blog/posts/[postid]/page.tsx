@@ -1,21 +1,20 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
 import { DocumentData } from "firebase/firestore"
 
-import { useAuthContext } from "@/lib/firebase/auth-context"
+import { getUserInfo } from "@/lib/firebase/auth"
 import { getPost } from "@/lib/firebase/posts"
 
 function Page({ params }: { params: { postid: string } }) {
-  const user = useAuthContext()
-  const router = useRouter()
   const [post, setPost] = useState<DocumentData | null | undefined>(null)
-
+  const [authorInfo, setAuthorInfo] = useState<DocumentData | null>(null)
   useEffect(() => {
     const fetchPost = async () => {
       const post = await getPost(params.postid)
       setPost(post)
+      const author = await getUserInfo(post.authorId)
+      setAuthorInfo(author)
     }
     if (params.postid) {
       fetchPost()
@@ -23,12 +22,19 @@ function Page({ params }: { params: { postid: string } }) {
   }, [params.postid])
   return (
     <>
-      <div>
-        <h1>{params.postid}</h1>
-      </div>
-      <div>
-        {post ? <pre>{JSON.stringify(post, null, 2)}</pre> : <p>loading</p>}
-      </div>
+      {post ? (
+        <div>
+          <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
+            {post.title}
+          </h1>
+          <p className="text-muted-foreground sm: text-xl">
+            {authorInfo ? authorInfo.name : "Loading ..."}
+          </p>
+          <p className="my-4 text-lg md:text-xl md:leading-8">{post.body}</p>
+        </div>
+      ) : (
+        <p>loading</p>
+      )}
     </>
   )
 }
