@@ -57,7 +57,8 @@ export default function ProfileForm() {
       //should validate that createPost goes through
       toast({
         title: "Post Created!",
-        description: "Check the posts page to view and edit",
+        description:
+          "Check the posts page to view and edit. It may take a few minutes to show up.",
         action: <ToastAction altText="Undo">Close</ToastAction>,
       })
       router.push(`/blog/posts/${docId}`)
