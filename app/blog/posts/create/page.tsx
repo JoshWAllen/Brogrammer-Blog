@@ -78,11 +78,8 @@ export default function ProfileForm() {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input placeholder="How I Broke out of Hell" {...field} />
+                  <Input placeholder="What did you learn?" {...field} />
                 </FormControl>
-                <FormDescription>
-                  Captivate your audience with a juicy title
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -95,12 +92,15 @@ export default function ProfileForm() {
                 <FormLabel>Body</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Tutorial hell is a real place, but most beginner programmers don't even know they're in it!"
+                    placeholder="Talk about anything you like!"
                     className=""
                     rows={30}
                     {...field}
                   />
                 </FormControl>
+                <FormDescription>
+                  Markdown Support Coming Soon...
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
