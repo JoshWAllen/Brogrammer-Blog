@@ -13,7 +13,6 @@ function Page({ params }: { params: { postid: string } }) {
   const [post, setPost] = useState<DocumentData | null | undefined>(null)
 
   useEffect(() => {
-    if (!user) router.push("/")
     const fetchPost = async () => {
       const post = await getPost(params.postid)
       setPost(post)
